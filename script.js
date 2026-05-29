@@ -15,4 +15,50 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
-console.log(addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "not read yet"));
+addBookToLibrary("Game of Thrones", "J.R.R. Tolkien", 295, "not read yet");
+addBookToLibrary("Smth else", "J.R.R. Tolkien", 295, "not read yet");
+
+
+
+
+const bookTitle = document.querySelectorAll(".book-title");
+
+const bookTitles = [];
+
+for (let i = 0; i < myLibrary.length; i++) {
+        bookTitles.push(myLibrary[i].title);
+    }
+
+
+const library = document.querySelector(".library");
+const books = document.createElement('div');
+books.classList.add("book");
+
+// const ul = document.createElement('div');
+
+//const data = ['About', 'Menu', 'Contact'];
+
+bookTitles.forEach(title => {
+  const bookTitle = document.createElement('h2');
+  bookTitle.textContent = title;
+  books.append(bookTitle);
+});
+
+library.appendChild(books);
+
+/* for (let i = 0; i < bookTitles.length; i++) {
+    bookTitle.textContent = bookTitles[i];
+}
+ */
+
+/* bookTitle.forEach(book => {
+    for (let i = 0; i < myLibrary.length; i++) {
+        book.textContent = myLibrary[i].title;
+        console.log(myLibrary[i].title);
+    }
+}); */
+
+
+/* bookTitle.forEach(book => {
+        book.textContent = "hey";
+}); */

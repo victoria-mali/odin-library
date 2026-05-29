@@ -1,0 +1,36 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+*:not(dialog) {
+  margin: 0;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    margin: 40px 0;
+}
+
+.library {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book {
+    background-color: rgb(235, 235, 235);
+    padding: 20px 30px;
+    border-radius: 12px;
+}
