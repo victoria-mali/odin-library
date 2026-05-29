@@ -20,45 +20,51 @@ addBookToLibrary("Smth else", "J.R.R. Tolkien", 295, "not read yet");
 
 
 
-
-const bookTitle = document.querySelectorAll(".book-title");
-
-const bookTitles = [];
-
-for (let i = 0; i < myLibrary.length; i++) {
-        bookTitles.push(myLibrary[i].title);
-    }
-
-
 const library = document.querySelector(".library");
-const books = document.createElement('div');
-books.classList.add("book");
 
-// const ul = document.createElement('div');
 
-//const data = ['About', 'Menu', 'Contact'];
+myLibrary.forEach(book => {
+  const bookCard = document.createElement('div');
+  bookCard.classList.add("book-card");
 
-bookTitles.forEach(title => {
+  const bookTitle = document.createElement('h2');
+  bookTitle.classList.add("book-title");
+  bookTitle.textContent = book.title;
+
+  const bookAuthor = document.createElement("p");
+  bookAuthor.classList.add("book-author");
+  bookAuthor.textContent = book.author;
+
+  const bookPages = document.createElement("p");
+  bookPages.classList.add("book-pages");
+  bookPages.textContent = book.pages;
+
+  const ifRead = document.createElement("div");
+    const ifReadLabel = document.createElement("label");
+        ifReadLabel.htmlFor = "if-read";
+        ifReadLabel.textContent="Already read?";
+    const ifReadInput = document.createElement("input");
+        ifReadInput.id = "if-read";
+         ifReadInput.name = "if-read";
+        ifReadInput.type = "checkbox";
+
+  bookCard.appendChild(bookTitle);
+  bookCard.appendChild(bookAuthor);
+  bookCard.appendChild(bookPages);
+  bookCard.appendChild(ifRead);
+  ifRead.appendChild(ifReadLabel);
+  ifRead.appendChild(ifReadInput);
+  library.appendChild(bookCard);
+});
+
+/* bookTitles.forEach(title => {
+  const books = document.createElement('div');
+  books.classList.add("book");
   const bookTitle = document.createElement('h2');
   bookTitle.textContent = title;
   books.append(bookTitle);
-});
-
-library.appendChild(books);
-
-/* for (let i = 0; i < bookTitles.length; i++) {
-    bookTitle.textContent = bookTitles[i];
-}
- */
-
-/* bookTitle.forEach(book => {
-    for (let i = 0; i < myLibrary.length; i++) {
-        book.textContent = myLibrary[i].title;
-        console.log(myLibrary[i].title);
-    }
+  library.appendChild(books);
 }); */
 
 
-/* bookTitle.forEach(book => {
-        book.textContent = "hey";
-}); */
+
