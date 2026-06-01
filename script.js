@@ -9,62 +9,128 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-  // take params, create a book then store it in the array
     let newBook = new Book(title, author, pages, read);
     return myLibrary.push(newBook);
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
-addBookToLibrary("Game of Thrones", "J.R.R. Tolkien", 295, "not read yet");
-addBookToLibrary("Smth else", "J.R.R. Tolkien", 295, "not read yet");
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
+addBookToLibrary("Game of Thrones", "J.R.R. Tolkien", 295, false);
+addBookToLibrary("Smth else", "J.R.R. Tolkien", 295, false);
 
 
 
 const library = document.querySelector(".library");
 
 
+
 myLibrary.forEach(book => {
-  const bookCard = document.createElement('div');
-  bookCard.classList.add("book-card");
+    const bookCard = document.createElement('div');
+    bookCard.classList.add("book-card");
 
-  const bookTitle = document.createElement('h2');
-  bookTitle.classList.add("book-title");
-  bookTitle.textContent = book.title;
+    const bookTitle = document.createElement('h2');
+    bookTitle.classList.add("book-title");
+    bookTitle.textContent = book.title;
 
-  const bookAuthor = document.createElement("p");
-  bookAuthor.classList.add("book-author");
-  bookAuthor.textContent = book.author;
+    const bookAuthor = document.createElement("p");
+    bookAuthor.classList.add("book-author");
+    bookAuthor.textContent = book.author;
 
-  const bookPages = document.createElement("p");
-  bookPages.classList.add("book-pages");
-  bookPages.textContent = book.pages;
+    const bookPages = document.createElement("p");
+    bookPages.classList.add("book-pages");
+    bookPages.textContent = book.pages;
 
-  const ifRead = document.createElement("div");
-    const ifReadLabel = document.createElement("label");
-        ifReadLabel.htmlFor = "if-read";
-        ifReadLabel.textContent="Already read?";
-    const ifReadInput = document.createElement("input");
-        ifReadInput.id = "if-read";
-         ifReadInput.name = "if-read";
-        ifReadInput.type = "checkbox";
+    const ifRead = document.createElement("div");
+      const ifReadLabel = document.createElement("label");
+          ifReadLabel.htmlFor = "if-read";
+          ifReadLabel.textContent="Already read?";
+      const ifReadInput = document.createElement("input");
+          ifReadInput.id = "if-read";
+          ifReadInput.name = "if-read";
+          ifReadInput.type = "checkbox";
 
-  bookCard.appendChild(bookTitle);
-  bookCard.appendChild(bookAuthor);
-  bookCard.appendChild(bookPages);
-  bookCard.appendChild(ifRead);
-  ifRead.appendChild(ifReadLabel);
-  ifRead.appendChild(ifReadInput);
-  library.appendChild(bookCard);
+
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(ifRead);
+    ifRead.appendChild(ifReadLabel);
+    ifRead.appendChild(ifReadInput);
+    library.appendChild(bookCard);
+  });
+
+  
+
+
+
+
+const showButton = document.getElementById("showDialog");
+const favDialog = document.getElementById("favDialog");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+
+// "Show the dialog" button opens the <dialog> modally
+showButton.addEventListener("click", () => {
+  favDialog.showModal();
 });
 
-/* bookTitles.forEach(title => {
-  const books = document.createElement('div');
-  books.classList.add("book");
-  const bookTitle = document.createElement('h2');
-  bookTitle.textContent = title;
-  books.append(bookTitle);
-  library.appendChild(books);
+// "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+/* favDialog.addEventListener("close", (e) => {
+
 }); */
 
+let formTitle = document.getElementById("form-title");
+let formAuthor = document.getElementById("form-author");
+let formPages = document.getElementById("form-pages");
+let formRead = document.getElementById("form-read");
 
+
+// Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // We don't want to submit this fake form
+  favDialog.close(formTitle.value, formAuthor.value, formPages.value, formRead.value); // Have to send the select box value here.
+  });
+
+  favDialog.addEventListener("close", (e) => {
+    addBookToLibrary(formTitle.value, formAuthor.value, formPages.value, formRead.value);
+    showBookInLibrary()
+});
+
+
+function showBookInLibrary() {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add("book-card");
+
+    const bookTitle = document.createElement('h2');
+    bookTitle.classList.add("book-title");
+    bookTitle.textContent = formTitle.value;
+
+    const bookAuthor = document.createElement("p");
+    bookAuthor.classList.add("book-author");
+    bookAuthor.textContent = formAuthor.value;
+
+    const bookPages = document.createElement("p");
+    bookPages.classList.add("book-pages");
+    bookPages.textContent = formPages.value;
+
+    const ifRead = document.createElement("div");
+      const ifReadLabel = document.createElement("label");
+          ifReadLabel.htmlFor = "if-read";
+          ifReadLabel.textContent="Already read?";
+      const ifReadInput = document.createElement("input");
+          ifReadInput.id = "if-read";
+          ifReadInput.name = "if-read";
+          ifReadInput.type = "checkbox";
+    if (formRead.checked === true) {
+      ifReadInput.checked = true;
+    } else {
+      ifReadInput.unchecked = false;
+    }
+
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(ifRead);
+    ifRead.appendChild(ifReadLabel);
+    ifRead.appendChild(ifReadInput);
+    library.appendChild(bookCard);
+}
 

@@ -10,78 +10,61 @@
 <body>
     <div class="container">
           <h1>The Library</h1>  
-          <div class="library">
-            
-<!--             <div class="book">
-                <h2 id="test-title" class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
-                        <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
-                        <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
-
-                                    <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
-
-                                    <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
+          <div class="library"></div>
+<!-- 
+          <button class="new-book" command="show-modal" commandfor="my-dialog">Add new book</button>
+          <dialog id="my-dialog">
+            <p>This dialog was opened using an invoker command.</p>
+            <button commandfor="my-dialog" command="close">Close</button>
+            </dialog> -->
 
 
-                                    <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div>
+            <!-- A modal dialog containing a form -->
+            <dialog id="favDialog">
+            <form method="dialog">
+                <h2>Enter book details</h2>
 
-                                    <div class="book">
-                <h2 class="book-title">Book title</h2>
-                <p class="author">Author</p>
-                <p class="pages">Pages</p>
-                  <div class="read">
-                    <label for="read">Already read?</label>
-                    <input type="checkbox" id="read" name="read" />
-                    </div>
-            </div> -->
-          </div>
-    </div>
+                <p>
+                <label>
+                   Book title
+                    <input type="text" name="title" id="form-title" required/>
+                </label>
+                </p>
+
+                <p>
+                <label>
+                   Author
+                    <input type="text" name="author" id="form-author" required/>
+                </label>
+                </p>
+
+
+                <p>
+                <label>
+                   Number of pages
+                    <input type="number" name="pages" id="form-pages" required/>
+                </label>
+                </p>
+
+                <p>
+                <label>
+                   Already read?
+                    <input type="checkbox" name="if-read" id="form-read"/>
+                </label>
+                </p>
+
+
+                <div>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmBtn" value="default">Confirm</button>
+                </div>
+            </form>
+            </dialog>
+            <p>
+            <button id="showDialog">Add a new book</button>
+            </p>
+            <output></output>
+                </div>
 
 
 </body>
