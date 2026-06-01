@@ -23,6 +23,7 @@ const library = document.querySelector(".library");
 
 
 
+
 myLibrary.forEach(book => {
     const bookCard = document.createElement('div');
     bookCard.classList.add("book-card");
@@ -47,21 +48,47 @@ myLibrary.forEach(book => {
           ifReadInput.id = "if-read";
           ifReadInput.name = "if-read";
           ifReadInput.type = "checkbox";
+      if (book.read === true) {
+      ifReadInput.checked = true;
+    } else {
+      ifReadInput.checked = false;
+    }
 
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "Remove the book";
+
+
+    bookCard.setAttribute('data-id', book.id);
+ 
 
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.appendChild(bookPages);
     bookCard.appendChild(ifRead);
+    bookCard.appendChild(deleteBtn);
     ifRead.appendChild(ifReadLabel);
     ifRead.appendChild(ifReadInput);
     library.appendChild(bookCard);
+
+
+
+    const removeItem = (event) => {
+        let book = event.currentTarget.parentNode;
+        console.log(book);
+        let bookId = book.getAttribute('data-id') // extracting the data attribute
+        console.log(bookId);
+        book.remove();
+       // let itemIndex = myLibrary.indexOf(bookId);
+        let itemIndex = myLibrary.findIndex(x => x.id === bookId);
+        console.log(itemIndex);
+        myLibrary.splice(itemIndex, 1);
+    }
+
+    deleteBtn.addEventListener("click", removeItem);
   });
 
   
-
-
-
 
 const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
@@ -72,10 +99,6 @@ showButton.addEventListener("click", () => {
   favDialog.showModal();
 });
 
-// "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
-/* favDialog.addEventListener("close", (e) => {
-
-}); */
 
 let formTitle = document.getElementById("form-title");
 let formAuthor = document.getElementById("form-author");
@@ -91,7 +114,15 @@ confirmBtn.addEventListener("click", (event) => {
 
   favDialog.addEventListener("close", (e) => {
     addBookToLibrary(formTitle.value, formAuthor.value, formPages.value, formRead.value);
-    showBookInLibrary()
+    
+    if (formTitle.value != "" && formAuthor.value != "" && formPages.value != "") {
+        showBookInLibrary()
+  formTitle.value = "";
+  formAuthor.value = "";
+  formPages.value = "";
+  formRead.checked = false;
+    }
+
 });
 
 
@@ -125,10 +156,17 @@ function showBookInLibrary() {
       ifReadInput.unchecked = false;
     }
 
+        const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "Remove the book";
+    
+
+
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.appendChild(bookPages);
     bookCard.appendChild(ifRead);
+    bookCard.appendChild(deleteBtn);
     ifRead.appendChild(ifReadLabel);
     ifRead.appendChild(ifReadInput);
     library.appendChild(bookCard);
