@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Library</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
           <h1>The Library</h1>  
           <div class="library"></div>
-<!-- 
-          <button class="new-book" command="show-modal" commandfor="my-dialog">Add new book</button>
-          <dialog id="my-dialog">
-            <p>This dialog was opened using an invoker command.</p>
-            <button commandfor="my-dialog" command="close">Close</button>
-            </dialog> -->
 
 
-            <!-- A modal dialog containing a form -->
             <dialog id="favDialog">
             <form method="dialog">
                 <h2>Enter book details</h2>
@@ -61,7 +57,7 @@
             </form>
             </dialog>
             <p>
-            <button id="showDialog">Add a new book</button>
+            <button class="add-btn" id="showDialog">Add a new book</button>
             </p>
             <output></output>
                 </div>

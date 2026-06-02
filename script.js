@@ -31,6 +31,9 @@ function createBookCard(book) {
     const bookCard = document.createElement('div');
     bookCard.classList.add("book-card");
 
+    const bookCardContainer = document.createElement('div');
+    bookCard.classList.add("book-card-container");
+
     const bookTitle = document.createElement('h2');
     bookTitle.classList.add("book-title");
     bookTitle.textContent = book.title;
@@ -41,13 +44,16 @@ function createBookCard(book) {
 
     const bookPages = document.createElement("p");
     bookPages.classList.add("book-pages");
-    bookPages.textContent = book.pages;
+    bookPages.textContent = book.pages + " pages";
 
     const ifRead = document.createElement("div");
+    ifRead.classList.add("book-read");
       const ifReadLabel = document.createElement("label");
+      ifReadLabel.classList.add("book-read-label");
           ifReadLabel.htmlFor = "if-read";
           ifReadLabel.textContent="Already read?";
       const ifReadInput = document.createElement("input");
+      ifReadInput.classList.add("book-read-input");
           ifReadInput.id = "if-read";
           ifReadInput.name = "if-read";
           ifReadInput.type = "checkbox";
@@ -60,22 +66,25 @@ function createBookCard(book) {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
-    deleteBtn.textContent = "Remove the book";
+    deleteBtn.textContent = "Remove";
 
 
+    library.appendChild(bookCard);
     bookCard.setAttribute('data-id', book.id);
     bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-    bookCard.appendChild(ifRead);
-    bookCard.appendChild(deleteBtn);
-    ifRead.appendChild(ifReadLabel);
+    bookCard.appendChild(bookCardContainer);
+    bookCardContainer.appendChild(bookAuthor);
+    bookCardContainer.appendChild(bookPages);
+    bookCardContainer.appendChild(ifRead);
+    bookCardContainer.appendChild(deleteBtn);
     ifRead.appendChild(ifReadInput);
-    library.appendChild(bookCard);
+    ifRead.appendChild(ifReadLabel);
+
 
     
     deleteBtn.addEventListener("click", removeItem);
-    ifRead.addEventListener("change", (event) => {
+
+    ifReadInput.addEventListener("change", (event) => {
         let book = event.currentTarget.parentNode;
         let bookId = book.getAttribute('data-id');
         let itemIndex = myLibrary.findIndex(x => x.id === bookId);
@@ -92,8 +101,8 @@ function addBookToLibrary(title, author, pages, read) {
 
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("Game of Thrones", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("Smth else", "J.R.R. Tolkien", 295, false);
+addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 186, false);
+addBookToLibrary("Pride and Prejudice", "Jane Austen", 376, false);
 
 
 const showButton = document.getElementById("showDialog");
