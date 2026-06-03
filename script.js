@@ -15,13 +15,10 @@ Book.prototype.toggleRead = function() {
 const library = document.querySelector(".library");
 
 const removeItem = (event) => {
-        let book = event.currentTarget.parentNode;
-        console.log(book);
+        let book = event.currentTarget.closest('[data-id]');
         let bookId = book.getAttribute('data-id')
-        console.log(bookId);
         book.remove();
         let itemIndex = myLibrary.findIndex(x => x.id === bookId);
-        console.log(itemIndex);
         myLibrary.splice(itemIndex, 1);
     }
 
@@ -32,7 +29,7 @@ function createBookCard(book) {
     bookCard.classList.add("book-card");
 
     const bookCardContainer = document.createElement('div');
-    bookCard.classList.add("book-card-container");
+    bookCardContainer.classList.add("book-card-container");
 
     const bookTitle = document.createElement('h2');
     bookTitle.classList.add("book-title");
@@ -50,11 +47,11 @@ function createBookCard(book) {
     ifRead.classList.add("book-read");
       const ifReadLabel = document.createElement("label");
       ifReadLabel.classList.add("book-read-label");
-          ifReadLabel.htmlFor = "if-read";
+          ifReadLabel.htmlFor = `if-read-${book.id}`;
           ifReadLabel.textContent="Already read?";
       const ifReadInput = document.createElement("input");
       ifReadInput.classList.add("book-read-input");
-          ifReadInput.id = "if-read";
+          ifReadInput.id = `if-read-${book.id}`;
           ifReadInput.name = "if-read";
           ifReadInput.type = "checkbox";
 
@@ -85,7 +82,7 @@ function createBookCard(book) {
     deleteBtn.addEventListener("click", removeItem);
 
     ifReadInput.addEventListener("change", (event) => {
-        let book = event.currentTarget.parentNode;
+        let book = event.currentTarget.closest('[data-id]');
         let bookId = book.getAttribute('data-id');
         let itemIndex = myLibrary.findIndex(x => x.id === bookId);
         let item = myLibrary[itemIndex];
@@ -108,12 +105,24 @@ addBookToLibrary("Pride and Prejudice", "Jane Austen", 376, false);
 const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
+const cancelBtn = document.getElementById("cancel-btn");
 
 
 showButton.addEventListener("click", () => {
   favDialog.showModal();
 });
 
+cancelBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  favDialog.close();
+});
+
+
+favDialog.addEventListener("click", (event) => {
+    if (event.target === favDialog) {
+        favDialog.close();
+    }
+});
 
 let formTitle = document.getElementById("form-title");
 let formAuthor = document.getElementById("form-author");

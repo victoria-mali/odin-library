@@ -16,7 +16,8 @@
           <div class="library"></div>
 
 
-            <dialog id="favDialog">
+            <dialog class="dialog" id="favDialog">
+                                                  <button id="cancel-btn" class="cancel-btn" value="cancel" formmethod="dialog">×</button>
             <form method="dialog">
                 <h2>Enter book details</h2>
 
@@ -43,18 +44,18 @@
                 </p>
 
                 <p>
-                <label>
-                   Already read?
+                <label class="checkbox">
                     <input type="checkbox" name="if-read" id="form-read"/>
+                   Already read?
                 </label>
                 </p>
 
 
                 <div>
-                <button value="cancel" formmethod="dialog">Cancel</button>
-                <button id="confirmBtn" value="default">Confirm</button>
+                <button class="confirm-btn" id="confirmBtn" value="default">Confirm</button>
                 </div>
             </form>
+  
             </dialog>
             <p>
             <button class="add-btn" id="showDialog">Add a new book</button>
