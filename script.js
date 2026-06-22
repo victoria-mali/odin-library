@@ -1,16 +1,18 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+        toggleRead() {
+        this.read = !this.read;
+    }
 }
 
-Book.prototype.toggleRead = function() {
-    this.read = !this.read;
-}
 
 const library = document.querySelector(".library");
 
@@ -21,7 +23,6 @@ const removeItem = (event) => {
         let itemIndex = myLibrary.findIndex(x => x.id === bookId);
         myLibrary.splice(itemIndex, 1);
     }
-
 
 
 function createBookCard(book) {
