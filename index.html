@@ -1,68 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Odin Library</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-          <h1>The Library</h1>  
-          <div class="library"></div>
+      <h1>The Library</h1>
+      <div class="library"></div>
 
+      <dialog class="dialog" id="favDialog">
+        <button
+          id="cancel-btn"
+          class="cancel-btn"
+          value="cancel"
+          formmethod="dialog"
+        >
+          ×
+        </button>
+        <form method="dialog">
+          <h2>Enter book details</h2>
 
-            <dialog class="dialog" id="favDialog">
-                                                  <button id="cancel-btn" class="cancel-btn" value="cancel" formmethod="dialog">×</button>
-            <form method="dialog">
-                <h2>Enter book details</h2>
+          <p>
+            <label>
+              Book title
+              <input type="text" name="title" id="form-title" minlength="5" maxlength="80" required/>
+            </label>
+          </p>
 
-                <p>
-                <label>
-                   Book title
-                    <input type="text" name="title" id="form-title" required/>
-                </label>
-                </p>
+          <p>
+            <label>
+              Author
+              <input type="text" name="author" id="form-author" minlength="5" maxlength="80" required />
+            </label>
+          </p>
 
-                <p>
-                <label>
-                   Author
-                    <input type="text" name="author" id="form-author" required/>
-                </label>
-                </p>
+          <p>
+            <label>
+              Number of pages
+              <input type="number" name="pages" id="form-pages" min="1" max="5000" required />
+            </label>
+          </p>
 
+          <p>
+            <label class="checkbox">
+              <input type="checkbox" name="if-read" id="form-read" />
+              Already read?
+            </label>
+          </p>
 
-                <p>
-                <label>
-                   Number of pages
-                    <input type="number" name="pages" id="form-pages" required/>
-                </label>
-                </p>
-
-                <p>
-                <label class="checkbox">
-                    <input type="checkbox" name="if-read" id="form-read"/>
-                   Already read?
-                </label>
-                </p>
-
-
-                <div>
-                <button class="confirm-btn" id="confirmBtn" value="default">Confirm</button>
-                </div>
-            </form>
-  
-            </dialog>
-            <p>
-            <button class="add-btn" id="showDialog">Add a new book</button>
-            </p>
-            <output></output>
-                </div>
-
-
-</body>
+          <div>
+            <button class="confirm-btn" id="confirmBtn" value="submit">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <p>
+        <button class="add-btn" id="showDialog">Add a new book</button>
+      </p>
+      <output></output>
+    </div>
+  </body>
 </html>
